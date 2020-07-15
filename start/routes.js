@@ -14,6 +14,9 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route');
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' };
-});
+Route.get('/users', 'UserController.main');
+
+// Auth Routes
+Route.get('/auth/redirect', 'AuthController.redirect');
+Route.get('/auth/callback', 'AuthController.authenticate');
+Route.get('/auth/verify', 'AuthController.verify').middleware('auth');
