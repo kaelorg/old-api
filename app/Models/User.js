@@ -1,21 +1,35 @@
+const BaseModel = require('./BaseModel');
 const UserSchema = require('../Schemas/User');
+const { IMAGES, DEFAULTS } = require('../../src/utils/Constants');
 
-/** @type {typeof import('adonis-mongoose-model/src/Model/Base')} */
-const BaseModel = use('MongooseModel');
-
-/**
- * @class User
- */
 class User extends BaseModel {
-  /**
-   * User's schema
-   */
   static get schema() {
     return UserSchema;
   }
 
-  static get primaryKey() {
-    return 'id';
+  get defaultValue() {
+    return {
+      social: {
+        bioColor: '',
+        extract: [],
+        rep: 0,
+        perf: 0,
+        bank: 0,
+        koins: 0,
+        charisma: 0,
+        cooldownRob: 0,
+        cooldownRep: 0,
+        cooldownInt: 0,
+        cooldownChar: 0,
+        cooldownWork: 0,
+        intelligence: 0,
+        cooldownPerf: 0,
+        cooldownDaily: 0,
+        bio: DEFAULTS.BIOGRAPHY,
+        favColor: DEFAULTS.FAV_COLOR,
+        background: IMAGES.BACKGROUND,
+      },
+    };
   }
 }
 
