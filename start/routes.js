@@ -1,22 +1,18 @@
-/*
-|--------------------------------------------------------------------------
-| Routes
-|--------------------------------------------------------------------------
-|
-| Http routes are entry points to your web application. You can create
-| routes for different URLs and bind Controller actions to them.
-|
-| A complete guide on routing is available here.
-| http://adonisjs.com/docs/4.1/routing
-|
-*/
-
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route');
 
-Route.get('/users', 'UserController.main');
+// User Routes
+Route.group('Users', () => {
+  Route.get(':userId', 'UserController.user');
+  Route.get('@me/guilds', 'UserController.userGuilds');
+  Route.get('@me/guilds/:guildId', 'UserController.userGuild');
+})
+  .prefix('users')
+  .middleware(['auth', 'discord']);
 
 // Auth Routes
-Route.get('/auth/redirect', 'AuthController.redirect');
-Route.get('/auth/callback', 'AuthController.authenticate');
-Route.get('/auth/verify', 'AuthController.verify').middleware('auth');
+Route.group('Auth', () => {
+  Route.get('redirect', 'AuthController.redirect');
+  Route.get('callback', 'AuthController.authenticate');
+  Route.get('verify', 'AuthController.verify').middleware('auth');
+}).prefix('auth');
