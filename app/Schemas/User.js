@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose');
 
-const Constants = require('../../src/utils/constants');
+const { IMAGES, DEFAULTS } = require('../../src/utils/Constants');
 
 // System - Social
 const SocialSchema = new Schema({
@@ -19,9 +19,9 @@ const SocialSchema = new Schema({
   intelligence: Number,
   cooldownPerf: Number,
   cooldownDaily: Number,
-  bio: { type: String, default: Constants.DEFAULTS.BIOGRAPHY },
-  favColor: { type: String, default: Constants.DEFAULTS.FAV_COLOR },
-  background: { type: String, default: Constants.IMAGES.BACKGROUND },
+  bio: { type: String, default: DEFAULTS.BIOGRAPHY },
+  favColor: { type: String, default: DEFAULTS.FAV_COLOR },
+  background: { type: String, default: IMAGES.BACKGROUND },
 });
 
 module.exports = {

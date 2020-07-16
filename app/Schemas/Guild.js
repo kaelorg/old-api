@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose');
 
-const Constants = require('../../src/utils/constants');
+const { DEFAULTS } = require('../../src/utils/Constants');
 
 // System - Social
 const SocialSchema = new Schema({ bank: Number });
@@ -74,27 +74,27 @@ const RoleNivelSchema = new Schema({
 const NivelSchema = new Schema({
   roles: [RoleNivelSchema],
   active: { type: Boolean, default: false },
-  message: { type: String, default: Constants.DEFAULTS.LEVEL_UP_MESSAGE },
+  message: { type: String, default: DEFAULTS.LEVEL_UP_MESSAGE },
 });
 
 // System - Welcome
 const LeaveWelcomeSchema = new Schema({
   channel: String,
   active: { type: Boolean, default: false },
-  message: { type: String, default: Constants.DEFAULTS.LEAVE_WELCOME_MESSAGE },
+  message: { type: String, default: DEFAULTS.LEAVE_WELCOME_MESSAGE },
 });
 
 const InputWelcomeSchema = new Schema({
   channel: String,
   active: { type: Boolean, default: false },
-  message: { type: String, default: Constants.DEFAULTS.INPUT_WELCOME_MESSAGE },
+  message: { type: String, default: DEFAULTS.INPUT_WELCOME_MESSAGE },
 });
 
 const PrivateWelcomeSchema = new Schema({
   active: { type: Boolean, default: false },
   message: {
     type: String,
-    default: Constants.DEFAULTS.PRIVATE_WELCOME_MESSAGE,
+    default: DEFAULTS.PRIVATE_WELCOME_MESSAGE,
   },
 });
 
@@ -114,6 +114,6 @@ module.exports = {
   suggestion: SuggestionSchema,
   harrypotter: HarryPotterSchema,
   _id: { type: String, required: true },
-  prefix: { type: String, default: Constants.DEFAULTS.PREFIX },
-  language: { type: String, default: Constants.DEFAULTS.LANGUAGE },
+  prefix: { type: String, default: DEFAULTS.PREFIX },
+  language: { type: String, default: DEFAULTS.LANGUAGE },
 };
