@@ -1,4 +1,4 @@
-class ConvertEmptyStringsToNull {
+class ConvertEmptyStringsToNullMiddleware {
   async handle({ request }, next) {
     if (Object.keys(request.body).length) {
       request.body = Object.assign(
@@ -12,4 +12,4 @@ class ConvertEmptyStringsToNull {
   }
 }
 
-module.exports = ConvertEmptyStringsToNull;
+module.exports = ConvertEmptyStringsToNullMiddleware;
