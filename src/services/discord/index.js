@@ -21,6 +21,12 @@ class DiscordService {
   get user() {
     return new DiscordUserService(this);
   }
+
+  requestUser(id) {
+    return this.request.clientFetch(
+      `/users/${id === '@me' ? this.userData.id : id}`,
+    );
+  }
 }
 
 module.exports = DiscordService;

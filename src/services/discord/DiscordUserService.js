@@ -29,9 +29,7 @@ class DiscordUserService {
       return Promise.all(
         guilds.map(async guild => {
           const clientAdded = !!(await this.request
-            .fetch(`/guilds/${guild.id}`, {
-              headers: { Authorization: `Bot ${process.env.DISCORD_TOKEN}` },
-            })
+            .clientFetch(`/guilds/${guild.id}`)
             .catch(() => {}));
 
           return DiscordUtil.parseGuild(clientAdded, guild);
@@ -41,19 +39,10 @@ class DiscordUserService {
   }
 
   async getGuild(id) {
-    this.request.refreshOptions({
-      headers: { Authorization: `Bot ${process.env.DISCORD_TOKEN}` },
-    });
-
-    const guild = await this.request.fetch(`/guilds/${id}`).catch(() => {});
-
-    if (!guild) return { code: 400 };
-
-    const member = await this.request
-      .fetch(`/guilds/${id}/members/${this.userData.id}`)
-      .catch(() => {});
-
-    if (!member) return { code: 400 };
+    const guild = await this.request.clientFetch(`/guilds/${id}`);
+    const member = await this.request.clientFetch(
+      `/guilds/${id}/members/${this.userData.id}`,
+    );
 
     const permissions = new Permissions(
       member.roles
@@ -62,7 +51,6 @@ class DiscordUserService {
     ).freeze();
 
     if (!permissions.has('MANAGE_GUILD')) return { code: 403 };
-
     return Object.assign(guild, { member });
   }
 }
