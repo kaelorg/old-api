@@ -1,25 +1,42 @@
-/** @type {import('../../Models/User')} */
-const User = use('App/Models/User');
-
 class UserController {
-  async user({ auth, params: { userId } }) {
-    const helpers = userId === '@me' ? auth.user : await User.findOne(userId);
+  async user({ auth, discord, response, params: { userId } }) {
+    try {
+      const helpers = userId === '@me' && auth.user;
+      const user = await discord.requestUser(userId);
 
-    return {
-      helpers,
-    };
+      return {
+        user,
+        helpers,
+      };
+    } catch ({ code, error }) {
+      response.status(code).send(error);
+    }
   }
 
-  async userGuilds({ discord }) {
-    const guilds = await discord.user.getGuilds();
-    return guilds;
+  // Get user guilds
+
+  async userGuilds({ discord, response }) {
+    try {
+      const guilds = await discord.user.getGuilds();
+      return guilds;
+    } catch ({ code, error }) {
+      response.status(code).send(error);
+    }
   }
 
   async userGuild({ discord, response, params: { guildId } }) {
-    const { code, ...guild } = await discord.user.getGuild(guildId);
+    try {
+      const guild = await discord.user.getGuild(guildId);
+      return guild;
+    } catch ({ code, error }) {
+      response.status(code).send(error);
+    }
+  }
 
-    if (code) return response.status(code).send();
-    return guild;
+  // Edit current user
+
+  async editUserProfile() {
+    return { ok: true };
   }
 }
 
