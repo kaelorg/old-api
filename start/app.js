@@ -12,6 +12,7 @@ const providers = [
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/websocket/providers/WsProvider',
   '@adonisjs/framework/providers/AppProvider',
+  '@adonisjs/validator/providers/ValidatorProvider',
   'adonis-mongoose-model/providers/MongooseProvider',
   '@adonisjs/bodyparser/providers/BodyParserProvider',
 ];
