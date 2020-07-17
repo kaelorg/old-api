@@ -2,7 +2,7 @@ const BaseModel = require('./BaseModel');
 const UserSchema = require('../Schemas/User');
 const { IMAGES, DEFAULTS } = require('../../src/utils/Constants');
 
-class User extends BaseModel {
+class UserModel extends BaseModel {
   static get schema() {
     return UserSchema;
   }
@@ -33,4 +33,4 @@ class User extends BaseModel {
   }
 }
 
-module.exports = User.buildModel('User');
+module.exports = UserModel.buildModel('User');

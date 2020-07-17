@@ -2,7 +2,7 @@ const BaseModel = require('./BaseModel');
 const GuildSchema = require('../Schemas/Guild');
 const { DEFAULTS } = require('../../src/utils/Constants');
 
-class Guild extends BaseModel {
+class GuildModel extends BaseModel {
   static get schema() {
     return GuildSchema;
   }
@@ -49,4 +49,4 @@ class Guild extends BaseModel {
   }
 }
 
-module.exports = Guild.buildModel('Guild');
+module.exports = GuildModel.buildModel('Guild');
