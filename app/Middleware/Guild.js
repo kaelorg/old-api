@@ -1,3 +1,5 @@
+const Util = require('../../src/utils/Util');
+
 class GuildMiddleware {
   async handle(ctx, next) {
     const {
@@ -9,8 +11,8 @@ class GuildMiddleware {
     try {
       const guild = await discord.user.getGuild(guildId);
       ctx.guild = guild;
-    } catch ({ code, error }) {
-      return response.status(code).send(error);
+    } catch (error) {
+      return Util.handleError(error, response);
     }
 
     await next();

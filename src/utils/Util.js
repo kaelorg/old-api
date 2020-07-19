@@ -1,6 +1,14 @@
 class Util {
-  static capitalize(str) {
-    return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
+  static handleError(emitedError, response) {
+    const { code, error, message } = emitedError;
+
+    if (typeof code !== 'number' || !error) {
+      console.error(emitedError.stack || emitedError);
+    }
+
+    response
+      .status(typeof code === 'number' ? code : 500)
+      .send(error || { message });
   }
 
   static mergeDefault(def, given) {

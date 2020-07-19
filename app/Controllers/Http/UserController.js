@@ -7,15 +7,15 @@ const Util = require('../../../src/utils/Util');
 class UserController {
   async user({ auth, discord, response, params: { userId } }) {
     try {
-      const helpers = userId === '@me' && auth.user;
       const user = await discord.getUser(userId);
+      const helpers = userId === '@me' ? auth.user : undefined;
 
       return {
-        user,
         helpers,
+        user: user.toJSON(),
       };
-    } catch ({ code, error }) {
-      response.status(code).send(error);
+    } catch (error) {
+      Util.handleError(error, response);
     }
   }
 
