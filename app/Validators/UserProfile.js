@@ -1,11 +1,9 @@
 /** @type {typeof import('@adonisjs/validator/src/Validator')} */
 const { rule } = use('Validator');
 
-class UserProfileValidator {
-  get validateAll() {
-    return true;
-  }
+const BaseValidator = require('./BaseValidator');
 
+class UserProfileValidator extends BaseValidator {
   get rules() {
     return {
       bio: [rule('required'), rule('min', 1), rule('max', 130)],
@@ -22,18 +20,10 @@ class UserProfileValidator {
 
   get messages() {
     return {
-      'bio.required': 'You must provide the user bio.',
-      'favColor.required': 'You must provide the user favorite color.',
-      'background.required': 'You must provide the user background.',
+      'bio.required': 'You must provide the user bio',
+      'background.required': 'You must provide the user background',
+      'favColor.required': 'You must provide the user favorite color',
     };
-  }
-
-  fails(errorMessages) {
-    return this.ctx.response
-      .status(400)
-      .send(
-        Object.assign(errorMessages[0], { errors: errorMessages.slice(1) }),
-      );
   }
 }
 
