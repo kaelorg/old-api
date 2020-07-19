@@ -1,3 +1,5 @@
+const UserStructure = require('../../structures/UserStructure');
+
 const DiscordUserService = require('./DiscordUserService');
 const DiscordRequestService = require('./DiscordRequestService');
 
@@ -23,15 +25,9 @@ class DiscordService {
   }
 
   getUser(id) {
-    return this.request.clientFetch(
-      `/users/${id === '@me' ? this.userData.id : id}`,
-    );
-  }
-
-  isValidGuildChannel(guildId, channelId) {
     return this.request
-      .clientFetch(`/guilds/${guildId}/channels`)
-      .then(channels => channels.some(channel => channel.id === channelId));
+      .clientFetch(`/users/${id === '@me' ? this.userData.id : id}`)
+      .then(data => new UserStructure(data));
   }
 }
 

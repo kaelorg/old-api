@@ -3,5 +3,5 @@ module.exports = {
   BitField: require('./BitField'),
   Constants: require('./Constants'),
   Permissions: require('./Permissions'),
-  DiscordUtil: require('./DiscordUtil'),
+  DiscordCDNUtil: require('./DiscordCDNUtil'),
 };

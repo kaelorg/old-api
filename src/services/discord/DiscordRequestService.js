@@ -1,5 +1,5 @@
-const Util = require('../../utils/Util');
 const RequestStructure = require('../../structures/RequestStructure');
+const Util = require('../../utils/Util');
 
 class DiscordRequestService extends RequestStructure {
   constructor(options = {}) {
