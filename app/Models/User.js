@@ -10,7 +10,6 @@ class UserModel extends BaseModel {
   get defaultValue() {
     return {
       social: {
-        bioColor: '',
         extract: [],
         rep: 0,
         perf: 0,

@@ -4,7 +4,6 @@ const { IMAGES, DEFAULTS } = require('../../src/utils/Constants');
 
 // System - Social
 const SocialSchema = new Schema({
-  bioColor: String,
   extract: Array,
   rep: Number,
   perf: Number,
