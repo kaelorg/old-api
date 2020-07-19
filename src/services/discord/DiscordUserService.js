@@ -50,7 +50,17 @@ class DiscordUserService {
         .map(role => guild.roles.find(r => r.id === role).permissions),
     ).freeze();
 
-    if (!permissions.has('MANAGE_GUILD')) return { code: 403 };
+    if (!permissions.has('MANAGE_GUILD')) {
+      const error = {
+        code: 403,
+        error: {
+          message: 'The current user does not have sufficient permissions',
+        },
+      };
+
+      throw error;
+    }
+
     return Object.assign(guild, { member });
   }
 }
