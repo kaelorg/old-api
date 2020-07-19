@@ -9,6 +9,7 @@ const globalMiddleware = [
 ];
 
 const namedMiddleware = {
+  guild: 'App/Middleware/Guild',
   auth: 'Adonis/Middleware/Auth',
   discord: 'App/Middleware/DiscordService',
   guest: 'Adonis/Middleware/AllowGuestOnly',
