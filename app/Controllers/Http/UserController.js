@@ -8,7 +8,7 @@ class UserController {
   async user({ auth, discord, response, params: { userId } }) {
     try {
       const helpers = userId === '@me' && auth.user;
-      const user = await discord.requestUser(userId);
+      const user = await discord.getUser(userId);
 
       return {
         user,
@@ -19,29 +19,9 @@ class UserController {
     }
   }
 
-  // Get user guilds
-
-  async userGuilds({ discord, response }) {
-    try {
-      const guilds = await discord.user.getGuilds();
-      return guilds;
-    } catch ({ code, error }) {
-      response.status(code).send(error);
-    }
-  }
-
-  async userGuild({ discord, response, params: { guildId } }) {
-    try {
-      const guild = await discord.user.getGuild(guildId);
-      return guild;
-    } catch ({ code, error }) {
-      response.status(code).send(error);
-    }
-  }
-
   // Edit current user
 
-  async editUserProfile({ auth, request, response }) {
+  async editProfile({ auth, request, response }) {
     const { bio, favColor, background } = request.only([
       'bio',
       'favColor',
@@ -56,9 +36,9 @@ class UserController {
     );
 
     const imgurHelper = new ImgurHelper();
-    const isValidBackground = await imgurHelper.isValidImage(hash);
+    const validBackground = await imgurHelper.isValidImage(hash);
 
-    if (!isValidBackground) {
+    if (!validBackground) {
       return response
         .status(400)
         .send({ message: 'The background url entered is invalid' });
@@ -66,7 +46,7 @@ class UserController {
 
     await User.update(
       auth.user._id,
-      Util.transformManyData('social', { bio, favColor, background }),
+      Util.transformData({ bio, favColor, background }, 'social'),
     );
   }
 }
