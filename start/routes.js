@@ -2,25 +2,43 @@
 const Route = use('Route');
 
 // Auth Routes
-
-Route.group('Auth', () => {
+Route.group(() => {
   Route.get('/redirect', 'AuthController.redirect');
   Route.get('/callback', 'AuthController.authenticate');
   Route.get('/verify', 'AuthController.verify').middleware('auth');
 }).prefix('/auth');
 
-// User Routes
+// Authenticated Routes
 
+// Users
 Route.group('Users', () => {
   Route.get('/:userId', 'UserController.user');
-  Route.get('/@me/guilds', 'UserController.userGuilds');
-  Route.get('/@me/guilds/:guildId', 'UserController.userGuild');
 
-  // Edit user
-
-  Route.put('/@me/profile', 'UserController.editUserProfile').validator(
+  // Edit authenticated user
+  Route.put('/@me/profile', 'UserController.editProfile').validator(
     'UserProfile',
   );
 })
   .prefix('/users')
   .middleware(['auth', 'discord']);
+
+// Guilds
+Route.get('/guilds', 'GuildController.guilds').middleware(['auth', 'discord']);
+
+Route.group(() => {
+  Route.get('/', 'GuildController.guild');
+
+  // Edit Guild
+  Route.put('/vanity', 'GuildController.editVanity');
+  Route.put('/general', 'GuildController.editGeneral').validator(
+    'GuildGeneral',
+  );
+  Route.put('/suggestion', 'GuildController.editSuggestion').validator(
+    'GuildSuggestion',
+  );
+  Route.put('/welcome/:type', 'GuildController.editWelcome').validator(
+    'GuildWelcome',
+  );
+})
+  .prefix('/guilds/:guildId')
+  .middleware(['auth', 'discord', 'guild']);
