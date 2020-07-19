@@ -1,3 +1,9 @@
+/** @type {typeof import('../../Models/User')} */
+const User = use('App/Models/User');
+
+const ImgurHelper = require('../../../src/helpers/ImgurHelper');
+const Util = require('../../../src/utils/Util');
+
 class UserController {
   async user({ auth, discord, response, params: { userId } }) {
     try {
@@ -35,8 +41,33 @@ class UserController {
 
   // Edit current user
 
-  async editUserProfile() {
-    return { ok: true };
+  async editUserProfile({ auth, request, response }) {
+    const { bio, favColor, background } = request.only([
+      'bio',
+      'favColor',
+      'background',
+    ]);
+
+    const [
+      ,
+      hash,
+    ] = /^https:\/\/i\.imgur\.com\/([a-zA-Z0-9]{7})\.(png|jpg|jpeg)$/.exec(
+      background,
+    );
+
+    const imgurHelper = new ImgurHelper();
+    const isValidBackground = await imgurHelper.isValidImage(hash);
+
+    if (!isValidBackground) {
+      return response
+        .status(400)
+        .send({ message: 'The background url entered is invalid' });
+    }
+
+    await User.update(
+      auth.user._id,
+      Util.transformManyData('social', { bio, favColor, background }),
+    );
   }
 }
 
