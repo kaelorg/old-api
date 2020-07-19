@@ -1,4 +1,5 @@
-const { Permissions, DiscordUtil } = require('../../utils');
+const UserStructure = require('../../structures/UserStructure');
+const GuildStructure = require('../../structures/GuildStructure');
 
 class DiscordUserService {
   /**
@@ -21,36 +22,33 @@ class DiscordUserService {
   }
 
   getUser() {
-    return this.request.fetch('/users/@me');
+    return this.request
+      .fetch('/users/@me')
+      .then(data => new UserStructure(data));
   }
 
   getGuilds() {
     return this.request.fetch('/users/@me/guilds').then(guilds => {
       return Promise.all(
-        guilds.map(async guild => {
-          const clientAdded = !!(await this.request
-            .clientFetch(`/guilds/${guild.id}`)
-            .catch(() => {}));
-
-          return DiscordUtil.parseGuild(clientAdded, guild);
-        }),
+        guilds.map(guild =>
+          new GuildStructure(this.discordService, guild).toJSON(true),
+        ),
       );
     });
   }
 
   async getGuild(id) {
-    const guild = await this.request.clientFetch(`/guilds/${id}`);
+    const guildData = await this.request.clientFetch(`/guilds/${id}`);
     const member = await this.request.clientFetch(
       `/guilds/${id}/members/${this.userData.id}`,
     );
 
-    const permissions = new Permissions(
-      member.roles
-        .concat(id)
-        .map(role => guild.roles.find(r => r.id === role).permissions),
-    ).freeze();
+    const guild = new GuildStructure(
+      this.discordService,
+      Object.assign(guildData, { member }),
+    );
 
-    if (!permissions.has('MANAGE_GUILD')) {
+    if (!guild.permissions.has('MANAGE_GUILD')) {
       const error = {
         code: 403,
         error: {
@@ -61,7 +59,7 @@ class DiscordUserService {
       throw error;
     }
 
-    return Object.assign(guild, { member });
+    return guild;
   }
 }
 

@@ -4,16 +4,30 @@ const Guild = use('App/Models/Guild');
 const Util = require('../../../src/utils/Util');
 
 class GuildController {
-  guild({ guild }) {
-    return guild;
-  }
-
   async guilds({ discord, response }) {
     try {
       const guilds = await discord.user.getGuilds();
       return guilds;
-    } catch ({ code, error }) {
-      response.status(code).send(error);
+    } catch (error) {
+      Util.handleError(error, response);
+    }
+  }
+
+  async guild({ guild, response }) {
+    try {
+      const guildData = await guild.toJSON();
+      const channels = await guild.getChannels();
+
+      return Object.assign(guildData, {
+        channels: channels
+          .filter(channel => channel.type === 0)
+          .map(channel => ({
+            id: channel.id,
+            name: channel.name,
+          })),
+      });
+    } catch (error) {
+      Util.handleError(error, response);
     }
   }
 
@@ -21,15 +35,14 @@ class GuildController {
 
   async editGeneral({ guild, request }) {
     const { prefix } = request.only(['prefix']);
-
     await Guild.update(guild.id, { prefix });
   }
 
-  async editSuggestion({ guild, discord, request, response }) {
+  async editSuggestion({ guild, request, response }) {
     try {
       const { active, channel } = request.only(['active', 'channel']);
 
-      if (channel && !(await discord.isValidGuildChannel(guild.id, channel))) {
+      if (channel && !(await guild.isValidChannel(guild.id, channel))) {
         return response
           .status(400)
           .send({ message: 'The inserted channel is invalid' });
@@ -39,12 +52,12 @@ class GuildController {
         guild.id,
         Util.transformData({ active, channel }, 'suggestion'),
       );
-    } catch ({ code, error }) {
-      response.status(code).send(error);
+    } catch (error) {
+      Util.handleError(error, response);
     }
   }
 
-  async editWelcome({ guild, discord, request, response, params: { type } }) {
+  async editWelcome({ guild, request, response, params: { type } }) {
     try {
       if (!['input', 'leave'].includes(type)) {
         return response.status(404).send();
@@ -56,7 +69,7 @@ class GuildController {
         'message',
       ]);
 
-      if (channel && !(await discord.isValidGuildChannel(guild.id, channel))) {
+      if (channel && !(await guild.isValidChannel(guild.id, channel))) {
         return response
           .status(400)
           .send({ message: 'The inserted channel is invalid' });
@@ -66,8 +79,8 @@ class GuildController {
         guild.id,
         Util.transformData({ active, channel, message }, `welcome.${type}`),
       );
-    } catch ({ code, error }) {
-      response.status(code).send(error);
+    } catch (error) {
+      Util.handleError(error, response);
     }
   }
 
