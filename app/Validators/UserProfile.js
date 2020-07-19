@@ -8,13 +8,13 @@ class UserProfileValidator {
 
   get rules() {
     return {
-      bio: 'required',
-      favColor: [rule('required'), rule('regex', /^#([A-F0-9]{3}){1,2}$/i)],
+      bio: [rule('required'), rule('min', 1), rule('max', 130)],
+      favColor: [rule('required'), rule('regex', /^#([a-fA-F0-9]{3}){1,2}$/)],
       background: [
         rule('required'),
         rule(
           'regex',
-          /^https:\/\/i\.imgur\.com\/[A-Z0-9]{7}\.(png|jpg|jpeg)$/i,
+          /^https:\/\/i\.imgur\.com\/[a-zA-Z0-9]{7}\.(png|jpg|jpeg)$/,
         ),
       ],
     };
@@ -29,7 +29,11 @@ class UserProfileValidator {
   }
 
   fails(errorMessages) {
-    return this.ctx.response.status(400).send(errorMessages);
+    return this.ctx.response
+      .status(400)
+      .send(
+        Object.assign(errorMessages[0], { errors: errorMessages.slice(1) }),
+      );
   }
 }
 
