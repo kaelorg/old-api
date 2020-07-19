@@ -22,10 +22,16 @@ class DiscordService {
     return new DiscordUserService(this);
   }
 
-  requestUser(id) {
+  getUser(id) {
     return this.request.clientFetch(
       `/users/${id === '@me' ? this.userData.id : id}`,
     );
+  }
+
+  isValidGuildChannel(guildId, channelId) {
+    return this.request
+      .clientFetch(`/guilds/${guildId}/channels`)
+      .then(channels => channels.some(channel => channel.id === channelId));
   }
 }
 
