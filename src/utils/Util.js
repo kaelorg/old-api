@@ -14,6 +14,14 @@ class Util {
     return { _id: many };
   }
 
+  static transformManyData(popKey, data = {}) {
+    return Object.entries(data).reduce(
+      (obj, [key, value]) =>
+        Object.assign(obj, { [`${popKey}.${key}`]: value }),
+      {},
+    );
+  }
+
   static mergeDefault(def, given) {
     if (!given) return def;
 
