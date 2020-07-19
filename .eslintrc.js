@@ -22,6 +22,7 @@ module.exports = {
 
     'no-console': 'off',
     'no-param-reassign': 'off',
+    'no-restricted-syntax': 'off',
     'no-underscore-dangle': 'off',
     'no-restricted-globals': 'off',
   },
