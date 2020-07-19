@@ -3,29 +3,9 @@ class Util {
     return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
   }
 
-  static transformMany(many) {
-    if (
-      (typeof many.toString === 'function' ? many.toString() : many) ===
-      '[object Object]'
-    ) {
-      return many;
-    }
-
-    return { _id: many };
-  }
-
-  static transformManyData(popKey, data = {}) {
-    return Object.entries(data).reduce(
-      (obj, [key, value]) =>
-        Object.assign(obj, { [`${popKey}.${key}`]: value }),
-      {},
-    );
-  }
-
   static mergeDefault(def, given) {
     if (!given) return def;
 
-    // eslint-disable-next-line no-restricted-syntax
     for (const key in def) {
       if (
         !Object.prototype.hasOwnProperty.call(given, key) ||
@@ -38,6 +18,29 @@ class Util {
     }
 
     return given;
+  }
+
+  static transformMany(many) {
+    if (
+      (typeof many.toString === 'function' ? many.toString() : many) ===
+      '[object Object]'
+    ) {
+      return many;
+    }
+
+    return { _id: many };
+  }
+
+  static transformData(data, popKey) {
+    return Object.entries(data)
+      .filter(([, value]) => !(typeof value === 'undefined' || value === null))
+      .reduce(
+        (fullObj, [key, value]) =>
+          Object.assign(fullObj, {
+            [`${popKey ? `${popKey}.` : ''}${key}`]: value,
+          }),
+        {},
+      );
   }
 }
 
