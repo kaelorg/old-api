@@ -1,3 +1,6 @@
+/** @type {typeof import('@adonisjs/websocket/src/Ws')} */
+const Ws = use('Ws');
+
 /** @type {typeof import('../../Models/Guild')} */
 const Guild = use('App/Models/Guild');
 
@@ -99,9 +102,17 @@ class GuildController {
       const { vanity } = await Guild.findOne(guild.id);
 
       if (!vanity.users.some(({ _id }) => _id === user)) {
-        // Send to websocket
-        console.log(Util.transformData({ user, role, time }));
-        return member;
+        const channel = Ws.getChannel('vanity').topic('vanity');
+
+        if (channel) {
+          channel.broadcastToAll('new', {
+            role,
+            user,
+            time,
+            member,
+            guild: guild.id,
+          });
+        }
       }
     } catch (error) {
       Util.handleError(error, response);
