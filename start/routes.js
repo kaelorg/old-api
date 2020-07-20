@@ -11,7 +11,7 @@ Route.group(() => {
 // Authenticated Routes
 
 // Users
-Route.group('Users', () => {
+Route.group(() => {
   Route.get('/:userId', 'UserController.user');
 
   // Edit authenticated user
@@ -29,7 +29,7 @@ Route.group(() => {
   Route.get('/', 'GuildController.guild');
 
   // Edit Guild
-  Route.put('/vanity', 'GuildController.editVanity');
+  Route.post('/vanity', 'GuildController.editVanity').validator('GuildVanity');
   Route.put('/general', 'GuildController.editGeneral').validator(
     'GuildGeneral',
   );
