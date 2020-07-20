@@ -1,3 +1,3 @@
 const Ws = use('Ws');
 
-Ws.channel('/*', 'GuildEditController');
+Ws.channel('/guild', 'GuildWebSocketController');

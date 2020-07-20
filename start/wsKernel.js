@@ -1,7 +1,8 @@
+/** @type {typeof import('adonis-websocket/src/Ws')} */
 const Ws = use('Ws');
 
-const namedMiddleware = {};
-
 const globalMiddleware = [];
+
+const namedMiddleware = {};
 
 Ws.registerGlobal(globalMiddleware).registerNamed(namedMiddleware);

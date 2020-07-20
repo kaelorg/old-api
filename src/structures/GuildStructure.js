@@ -55,8 +55,8 @@ class GuildStructure {
   get memberRoles() {
     return this.member.roles
       .concat(this.id)
-      .filter(role => this._roles.some(r => r.id === role))
-      .map(role => this._roles.find(r => r.id === role));
+      .filter(role => this._roles.some(({ id }) => id === role))
+      .map(role => this._roles.find(({ id }) => id === role));
   }
 
   get nameAcronym() {

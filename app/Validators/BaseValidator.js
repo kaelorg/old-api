@@ -6,9 +6,7 @@ class BaseValidator {
   fails(errorMessages) {
     return this.ctx.response
       .status(400)
-      .send(
-        Object.assign(errorMessages[0], { errors: errorMessages.slice(1) }),
-      );
+      .send({ ...errorMessages[0], errors: errorMessages });
   }
 }
 
