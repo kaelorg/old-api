@@ -1,9 +1,13 @@
-class GuildEditController {
+class GuildWebSocketController {
   constructor({ socket, request }) {
     this.socket = socket;
     this.request = request;
 
     console.log('user joined with %s socket id', socket.id, socket.topic);
+  }
+
+  onCall(data) {
+    this.socket.broadcastToAll('call', data);
   }
 
   onMessage() {
@@ -19,4 +23,4 @@ class GuildEditController {
   }
 }
 
-module.exports = GuildEditController;
+module.exports = GuildWebSocketController;
