@@ -1,3 +1,4 @@
+/** @type {typeof import('@adonisjs/websocket/src/Ws')} */
 const Ws = use('Ws');
 
-Ws.channel('/guild', 'GuildWebSocketController');
+Ws.channel('vanity', 'GuildVanityController');

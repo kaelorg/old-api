@@ -1,4 +1,4 @@
-/** @type {typeof import('adonis-websocket/src/Ws')} */
+/** @type {typeof import('@adonisjs/websocket/src/Ws')} */
 const Ws = use('Ws');
 
 const globalMiddleware = [];
