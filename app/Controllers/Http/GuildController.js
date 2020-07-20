@@ -20,7 +20,7 @@ class GuildController {
 
       return Object.assign(guildData, {
         channels: channels
-          .filter(channel => channel.type === 0)
+          .filter(({ type }) => type === 0)
           .map(channel => ({
             id: channel.id,
             name: channel.name,
@@ -84,8 +84,28 @@ class GuildController {
     }
   }
 
-  editVanity() {
-    return { ok: true };
+  async editVanity({ guild, request, response }) {
+    try {
+      const { user, role, time } = request.only(['user', 'role', 'time']);
+      const guildRole = guild.roles.find(({ id }) => id === role);
+
+      if (!guildRole || guildRole.managed) {
+        return response
+          .status(400)
+          .send({ message: 'The role entered is invalid' });
+      }
+
+      const member = await guild.getMember(user);
+      const { vanity } = await Guild.findOne(guild.id);
+
+      if (!vanity.users.some(({ _id }) => _id === user)) {
+        // Send to websocket
+        console.log(Util.transformData({ user, role, time }));
+        return member;
+      }
+    } catch (error) {
+      Util.handleError(error, response);
+    }
   }
 }
 
