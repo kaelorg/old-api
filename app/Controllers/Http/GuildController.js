@@ -45,7 +45,7 @@ class GuildController {
     try {
       const { active, channel } = request.only(['active', 'channel']);
 
-      if (channel && !(await guild.isValidChannel(guild.id, channel))) {
+      if (channel && !(await guild.isValidChannel(channel))) {
         return response
           .status(400)
           .send({ message: 'The inserted channel is invalid' });
@@ -72,7 +72,7 @@ class GuildController {
         'message',
       ]);
 
-      if (channel && !(await guild.isValidChannel(guild.id, channel))) {
+      if (channel && !(await guild.isValidChannel(channel))) {
         return response
           .status(400)
           .send({ message: 'The inserted channel is invalid' });
@@ -111,6 +111,11 @@ class GuildController {
             time,
             member,
             guild: guild.id,
+          });
+        } else {
+          response.status(503).send({
+            message:
+              'The manager is not connected to the socket, so he cannot handle the system',
           });
         }
       }
