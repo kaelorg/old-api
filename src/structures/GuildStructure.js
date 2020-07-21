@@ -99,7 +99,7 @@ class GuildStructure {
   }
 
   isValidChannel(channelId) {
-    return this.getChannels.then(channels =>
+    return this.getChannels().then(channels =>
       channels.some(channel => channel.id === channelId),
     );
   }
