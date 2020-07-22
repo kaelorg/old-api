@@ -28,20 +28,22 @@ class UserController {
       'background',
     ]);
 
-    const [
-      ,
-      hash,
-    ] = /^https:\/\/i\.imgur\.com\/([a-zA-Z0-9]{7})\.(png|jpg|jpeg)$/.exec(
-      background,
-    );
+    if (background) {
+      const [
+        ,
+        hash,
+      ] = /^https:\/\/i\.imgur\.com\/([a-zA-Z0-9]{7})\.(png|jpg|jpeg)$/.exec(
+        background,
+      );
 
-    const imgurHelper = new ImgurHelper();
-    const validBackground = await imgurHelper.isValidImage(hash);
+      const imgurHelper = new ImgurHelper();
+      const validBackground = await imgurHelper.isValidImage(hash);
 
-    if (!validBackground) {
-      return response
-        .status(400)
-        .send({ message: 'The background url entered is invalid' });
+      if (!validBackground) {
+        return response
+          .status(400)
+          .send({ message: 'The background url entered is invalid' });
+      }
     }
 
     await User.update(

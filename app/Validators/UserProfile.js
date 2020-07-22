@@ -6,10 +6,9 @@ const BaseValidator = require('./BaseValidator');
 class UserProfileValidator extends BaseValidator {
   get rules() {
     return {
-      bio: [rule('required'), rule('min', 1), rule('max', 130)],
-      favColor: [rule('required'), rule('regex', /^#([a-fA-F0-9]{3}){1,2}$/)],
+      bio: [rule('min', 1), rule('max', 130)],
+      favColor: [rule('regex', /^#([a-fA-F0-9]{3}){1,2}$/)],
       background: [
-        rule('required'),
         rule(
           'regex',
           /^https:\/\/i\.imgur\.com\/[a-zA-Z0-9]{7}\.(png|jpg|jpeg)$/,
