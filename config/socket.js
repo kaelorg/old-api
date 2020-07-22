@@ -1,5 +1,5 @@
 module.exports = {
-  path: '/adonis-ws',
+  path: '/ws',
   serverAttempts: 3,
   clientAttempts: 3,
   clientInterval: 25000,
