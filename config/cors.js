@@ -1,6 +1,6 @@
 module.exports = {
   maxAge: 90,
-  origin: false,
+  origin: true, //
   headers: true,
   credentials: false,
   exposeHeaders: false,
