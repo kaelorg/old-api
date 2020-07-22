@@ -5,6 +5,7 @@ const Ws = use('Ws');
 const Guild = use('App/Models/Guild');
 
 const Util = require('../../../src/utils/Util');
+const UserStructure = require('../../../src/structures/UserStructure');
 
 class GuildController {
   async guilds({ discord, response }) {
@@ -20,8 +21,14 @@ class GuildController {
     try {
       const guildData = await guild.toJSON();
       const channels = await guild.getChannels();
+      const helpers = await Guild.findOne(guild.id);
+      const owner = await guild
+        .getMember(guild.ownerId)
+        .then(({ user }) => new UserStructure(user));
 
       return Object.assign(guildData, {
+        owner,
+        helpers,
         channels: channels
           .filter(({ type }) => type === 0)
           .map(channel => ({
