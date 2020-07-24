@@ -25,7 +25,8 @@
 
 "@adonisjs/ally@https://github.com/adonisjs/adonis-ally":
   version "2.1.3"
-  resolved "https://github.com/adonisjs/adonis-ally#3c8697f7e0281f5ebe2903426a20c8bb8d24cace"
+  uid "5bca6cd9f2b35ed24bcb33f28cb92a1923bcea3d"
+  resolved "https://github.com/adonisjs/adonis-ally#5bca6cd9f2b35ed24bcb33f28cb92a1923bcea3d"
   dependencies:
     "@adonisjs/generic-exceptions" "^2.0.1"
     debug "^4.0.1"
