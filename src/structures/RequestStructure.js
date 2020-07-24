@@ -10,7 +10,7 @@ class RequestStructure {
       options,
     );
 
-    if (!/^https:\/\//.test(options.apiUrl)) {
+    if (!/^https?:\/\//.test(options.apiUrl)) {
       throw new Error('INVALID_API_URL_PROVIDED');
     }
 

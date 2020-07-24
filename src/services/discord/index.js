@@ -1,5 +1,4 @@
 const UserStructure = require('../../structures/UserStructure');
-
 const DiscordUserService = require('./DiscordUserService');
 const DiscordRequestService = require('./DiscordRequestService');
 
