@@ -1,6 +1,13 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route');
 
+// Client Routes
+Route.group(() => {
+  Route.get('/commands', 'ClientController.commands');
+})
+  .prefix('/client')
+  .middleware(['client']);
+
 // Auth Routes
 Route.group(() => {
   Route.get('/redirect', 'AuthController.redirect');
