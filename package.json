@@ -31,7 +31,7 @@
     "@adonisjs/websocket": "^1.0.12",
     "abort-controller": "^3.0.0",
     "adonis-mongoose-model": "^3.2.0",
-    "mongoose": "^5.9.25",
+    "mongoose": "^5.9.26",
     "node-fetch": "^2.6.0",
     "pem": "^1.14.4"
   },
