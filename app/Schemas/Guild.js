@@ -113,12 +113,12 @@ const WelcomeSchema = new Schema({
 
 module.exports = {
   nivel: NivelSchema,
-  autorole: AutoRoleSchema,
   count: CountSchema,
   social: SocialSchema,
   vanity: VanitySchema,
   freeze: FreezeSchema,
   welcome: WelcomeSchema,
+  autorole: AutoRoleSchema,
   suggestion: SuggestionSchema,
   harrypotter: HarryPotterSchema,
   _id: { type: String, required: true },
