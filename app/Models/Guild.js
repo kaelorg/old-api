@@ -13,10 +13,11 @@ class GuildModel extends BaseModel {
       language: DEFAULTS.LANGUAGE,
       social: { bank: 0 },
       vanity: { users: [] },
+      freeze: { users: [] },
       nivel: { active: false },
+      count: { active: false },
       suggestion: { active: false },
-      count: { channel: '', text: '', model: '' },
-      freeze: { channel: '', role: '', users: [] },
+      autorole: { active: false, roles: [] },
       welcome: {
         leave: {
           active: false,
@@ -32,12 +33,7 @@ class GuildModel extends BaseModel {
         },
       },
       harrypotter: {
-        houseRoles: {
-          gryffindor: '',
-          slytherin: '',
-          ravenclaw: '',
-          hufflepuff: '',
-        },
+        houseRoles: {},
         housePoints: {
           gryffindor: 0,
           slytherin: 0,

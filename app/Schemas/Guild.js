@@ -5,11 +5,18 @@ const { DEFAULTS } = require('../../src/utils/Constants');
 // System - Social
 const SocialSchema = new Schema({ bank: Number });
 
+// System - Autorole
+const AutoRoleSchema = new Schema({ active: Boolean, roles: Array });
+
 // System - Count
 const CountSchema = new Schema({
   text: String,
   model: String,
   channel: String,
+  active: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // System - Suggestion
@@ -56,7 +63,7 @@ const FreezeSchema = new Schema({
 
 // System - Vanity
 const UserVanitySchema = new Schema({
-  addedBy: { type: String },
+  addedBy: String,
   _id: { type: String, required: true },
   role: { type: String, required: true },
   time: { type: Number, required: true },
@@ -106,6 +113,7 @@ const WelcomeSchema = new Schema({
 
 module.exports = {
   nivel: NivelSchema,
+  autorole: AutoRoleSchema,
   count: CountSchema,
   social: SocialSchema,
   vanity: VanitySchema,
