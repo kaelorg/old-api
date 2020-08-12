@@ -25,7 +25,6 @@
 
 "@adonisjs/ally@https://github.com/adonisjs/adonis-ally":
   version "2.1.3"
-  uid "3c8697f7e0281f5ebe2903426a20c8bb8d24cace"
   resolved "https://github.com/adonisjs/adonis-ally#3c8697f7e0281f5ebe2903426a20c8bb8d24cace"
   dependencies:
     "@adonisjs/generic-exceptions" "^2.0.1"
@@ -218,6 +217,14 @@
     colorspace "1.1.x"
     enabled "2.0.x"
     kuler "^2.0.0"
+
+"@kaeltec/database@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@kaeltec/database/-/database-1.0.2.tgz#cc958b7262841ac63954eb0777df01677b5a593a"
+  integrity sha512-RU3Z+i15uTNq/qbuAqlVeMZjzTwUlh75tEDCeyBa1vJX0h80YHiBJ0uG649qm/0UT32tcwiZAqM+/e81a0G7Zg==
+  dependencies:
+    mongodb "^3.6.0"
+    mongoose "^5.9.28"
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
@@ -2814,6 +2821,19 @@ mongodb@3.5.10:
   version "3.5.10"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.5.10.tgz#ed414988d2935b529004cead6dfdd22681258887"
   integrity sha512-p/C48UvTU/dr/PQEDKfb9DsCVDJWXGmdJNFC+u5FPmTQVtog69X6D8vrWHz+sJx1zJnd96sjdh9ueo7bx2ILTw==
+  dependencies:
+    bl "^2.2.0"
+    bson "^1.1.4"
+    denque "^1.4.1"
+    require_optional "^1.0.1"
+    safe-buffer "^5.1.2"
+  optionalDependencies:
+    saslprep "^1.0.0"
+
+mongodb@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.6.0.tgz#babd7172ec717e2ed3f85e079b3f1aa29dce4724"
+  integrity sha512-/XWWub1mHZVoqEsUppE0GV7u9kanLvHxho6EvBxQbShXTKYF9trhZC2NzbulRGeG7xMJHD8IOWRcdKx5LPjAjQ==
   dependencies:
     bl "^2.2.0"
     bson "^1.1.4"

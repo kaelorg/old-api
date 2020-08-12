@@ -29,6 +29,7 @@
     "@adonisjs/ignitor": "^2.0.8",
     "@adonisjs/validator": "^5.0.6",
     "@adonisjs/websocket": "^1.0.12",
+    "@kaeltec/database": "^1.0.2",
     "abort-controller": "^3.0.0",
     "adonis-mongoose-model": "^3.2.0",
     "mongoose": "^5.9.28",
