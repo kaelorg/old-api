@@ -71,7 +71,9 @@ class BaseModel extends DefaultBaseModel {
    * Build Schema
    */
   static buildModel(schemaName, options = {}) {
-    return new this(applyModel(schemaName, super.buildSchema(options)));
+    return new this(
+      this.model || applyModel(schemaName, super.buildSchema(options)),
+    );
   }
 }
 

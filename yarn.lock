@@ -218,10 +218,10 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
-"@kaeltec/database@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@kaeltec/database/-/database-1.0.2.tgz#cc958b7262841ac63954eb0777df01677b5a593a"
-  integrity sha512-RU3Z+i15uTNq/qbuAqlVeMZjzTwUlh75tEDCeyBa1vJX0h80YHiBJ0uG649qm/0UT32tcwiZAqM+/e81a0G7Zg==
+"@kaeltec/database@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@kaeltec/database/-/database-1.0.3.tgz#3c1542d0c36eaac7fcb5a3f1c2ba113e4c9a60af"
+  integrity sha512-u58dNezTseIur9HObYxqnsm0hnb12o3QG3S5YTCXGpnGSfSYzaxXBIMZSQbCyNPp2D/tMo3MzWytWksYrcs1yA==
   dependencies:
     mongodb "^3.6.0"
     mongoose "^5.9.28"

@@ -111,7 +111,10 @@ class GuildController {
       if (!vanity.users.some(({ _id }) => _id === user)) {
         const channel = Ws.getChannel('vanity').topic('vanity');
 
-        if (channel) {
+        if (
+          channel &&
+          channel.socket.channel.subscriptions.get('vanity').size >= 2
+        ) {
           channel.broadcastToAll('new', {
             role,
             user,

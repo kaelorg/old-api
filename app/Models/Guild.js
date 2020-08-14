@@ -9,6 +9,10 @@ class GuildModel extends BaseModel {
     return GuildSchema;
   }
 
+  static get model() {
+    return model.model;
+  }
+
   get defaultValue() {
     return model.defaultValue;
   }

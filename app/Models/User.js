@@ -9,6 +9,10 @@ class UserModel extends BaseModel {
     return UserSchema;
   }
 
+  static get model() {
+    return model.model;
+  }
+
   get defaultValue() {
     return model.defaultValue;
   }
