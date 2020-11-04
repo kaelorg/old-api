@@ -108,19 +108,18 @@ class GuildController {
       const member = await guild.getMember(user);
       const { vanity } = await Guild.findOne(guild.id);
 
-      if (!vanity.users.some(({ _id }) => _id === user)) {
+      if (!vanity.users.some(({ id }) => id === user)) {
         const channel = Ws.getChannel('vanity').topic('vanity');
 
         if (
           channel &&
           channel.socket.channel.subscriptions.get('vanity').size >= 2
         ) {
-          channel.broadcastToAll('new', {
-            role,
-            user,
+          channel.broadcastToAll('add', {
             time,
-            member,
-            guild: guild.id,
+            role_id: role,
+            guild_id: guild.id,
+            member_id: member.id,
           });
         } else {
           response.status(503).send({
