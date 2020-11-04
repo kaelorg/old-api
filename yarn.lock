@@ -234,11 +234,17 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@kaeltec/database@^1.0.3":
+"@kaelbot/constants@^1.0.3":
   version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@kaeltec/database/-/database-1.0.3.tgz#3c1542d0c36eaac7fcb5a3f1c2ba113e4c9a60af"
-  integrity sha512-u58dNezTseIur9HObYxqnsm0hnb12o3QG3S5YTCXGpnGSfSYzaxXBIMZSQbCyNPp2D/tMo3MzWytWksYrcs1yA==
+  resolved "https://registry.yarnpkg.com/@kaelbot/constants/-/constants-1.0.3.tgz#3399b33ebe9e3903cbac65f78f6b67dae0a2ed7f"
+  integrity sha512-wxBSYT3QKg3KsZftFOW/os1LAT01qGBhN0VEeYc5lwH4RZjOhhpNuKgVlZYtz6jQZFU51BYjzEpOIZS+fE5l1w==
+
+"@kaelbot/database@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@kaelbot/database/-/database-1.0.3.tgz#9e0188a16cb365e73d9aa165b8d2e24620ecac6a"
+  integrity sha512-JhnKCUwqCv5yjeyoUjnom/FpEl0lwsbZ9BweK3ool4m1ny9b7W73ZixxMNv0llinbDLgui28hHtL4RVi/i3caA==
   dependencies:
+    "@kaelbot/constants" "^1.0.3"
     mongodb "^3.6.0"
     mongoose "^5.9.28"
 
