@@ -1,4 +1,4 @@
-const { UserSchema, UserConnection } = require('@kaeltec/database');
+const { UserSchema, UserConnection } = require('@kaelbot/database');
 
 const BaseModel = require('./BaseModel');
 

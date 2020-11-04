@@ -1,4 +1,4 @@
-const { GuildSchema, GuildConnection } = require('@kaeltec/database');
+const { GuildSchema, GuildConnection } = require('@kaelbot/database');
 
 const BaseModel = require('./BaseModel');
 
