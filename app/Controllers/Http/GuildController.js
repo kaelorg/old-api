@@ -105,7 +105,7 @@ class GuildController {
           .send({ message: 'The role entered is invalid' });
       }
 
-      const member = await guild.getMember(user);
+      /* const member = */ await guild.getMember(user);
       const { vanity } = await Guild.findOne(guild.id);
 
       if (!vanity.users.some(({ id }) => id === user)) {
@@ -118,8 +118,8 @@ class GuildController {
           channel.broadcastToAll('add', {
             time,
             role_id: role,
+            member_id: user,
             guild_id: guild.id,
-            member_id: member.id,
           });
         } else {
           response.status(503).send({
