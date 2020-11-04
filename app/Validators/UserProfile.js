@@ -6,8 +6,8 @@ const BaseValidator = require('./BaseValidator');
 class UserProfileValidator extends BaseValidator {
   get rules() {
     return {
-      bio: [rule('min', 1), rule('max', 130)],
-      favColor: [rule('regex', /^#([a-fA-F0-9]{3}){1,2}$/)],
+      biography: [rule('min', 1), rule('max', 130)],
+      favorite_color: [rule('regex', /^#([a-fA-F0-9]{3}){1,2}$/)],
       background: [
         rule(
           'regex',
@@ -19,9 +19,9 @@ class UserProfileValidator extends BaseValidator {
 
   get messages() {
     return {
-      'bio.required': 'You must provide the user bio',
+      'biography.required': 'You must provide the user bio',
       'background.required': 'You must provide the user background',
-      'favColor.required': 'You must provide the user favorite color',
+      'favorite_color.required': 'You must provide the user favorite color',
     };
   }
 }
