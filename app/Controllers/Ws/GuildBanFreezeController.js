@@ -1,6 +1,6 @@
 const isObject = value => value && value.constructor === Object;
 
-class GuildVanityController {
+class GuildBanFreezeController {
   constructor({ socket, request }) {
     this.socket = socket;
     this.request = request;
@@ -39,6 +39,12 @@ class GuildVanityController {
       this.socket.broadcastToAll('delete', data);
     }
   }
+
+  onSuccess(data) {
+    if (isObject(data)) {
+      this.socket.broadcastToAll('success', data);
+    }
+  }
 }
 
-module.exports = GuildVanityController;
+module.exports = GuildBanFreezeController;
