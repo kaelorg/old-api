@@ -22,10 +22,10 @@ class UserController {
   // Edit current user
 
   async editProfile({ auth, request, response }) {
-    const { bio, favColor, background } = request.only([
-      'bio',
-      'favColor',
+    const { biography, background, favorite_color } = request.only([
+      'biography',
       'background',
+      'favorite_color',
     ]);
 
     if (background) {
@@ -48,7 +48,7 @@ class UserController {
 
     await User.update(
       auth.user._id,
-      Util.transformData({ bio, favColor, background }, 'social'),
+      Util.transformData({ biography, background, favorite_color }, 'social'),
     );
   }
 }
