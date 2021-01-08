@@ -239,6 +239,11 @@
   resolved "https://registry.yarnpkg.com/@kaelbot/constants/-/constants-1.0.3.tgz#3399b33ebe9e3903cbac65f78f6b67dae0a2ed7f"
   integrity sha512-wxBSYT3QKg3KsZftFOW/os1LAT01qGBhN0VEeYc5lwH4RZjOhhpNuKgVlZYtz6jQZFU51BYjzEpOIZS+fE5l1w==
 
+"@kaelbot/constants@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@kaelbot/constants/-/constants-1.0.5.tgz#981181967ab5dacbe75d0bbd37b42f99f2c70c4f"
+  integrity sha512-oJf0h1b4yK1U7MdfGwCuLLPEhsU5g954EK5LlsWm3a92Q+VYGwOuINzXoxFBxcocEEEoQwyqQ/iCHsYJMLvySQ==
+
 "@kaelbot/database@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@kaelbot/database/-/database-1.0.3.tgz#9e0188a16cb365e73d9aa165b8d2e24620ecac6a"

@@ -1,3 +1,5 @@
+const { Urls } = require('@kaelbot/constants');
+
 class AuthController {
   verify() {
     return { ok: true };
@@ -24,7 +26,7 @@ class AuthController {
 
     response.redirect(
       `${
-        process.env.DASHBOARD_URL || 'https://dash.kaelbot.xyz'
+        process.env.DASHBOARD_URL || Urls.Dashboard
       }/login?${new URLSearchParams({ token, type }).toString()}`,
     );
   }
