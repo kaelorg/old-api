@@ -30,12 +30,11 @@
     "@adonisjs/validator": "^5.0.6",
     "@adonisjs/websocket": "^1.0.12",
     "@kaelbot/constants": "^1.0.5",
-    "@kaelbot/database": "^1.0.3",
+    "@kaelbot/database": "^1.0.5",
     "abort-controller": "^3.0.0",
     "adonis-mongoose-model": "^3.2.0",
     "mongoose": "^5.9.28",
-    "node-fetch": "^2.6.1",
-    "pem": "^1.14.4"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@adonisjs/cli": "4.0.12",
