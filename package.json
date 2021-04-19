@@ -33,7 +33,7 @@
     "@kaelbot/database": "^1.0.5",
     "abort-controller": "^3.0.0",
     "adonis-mongoose-model": "^3.2.0",
-    "mongoose": "^5.9.28",
+    "mongoose": "^5.12.5",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
