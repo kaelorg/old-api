@@ -37,7 +37,7 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@adonisjs/cli": "4.0.12",
+    "@adonisjs/cli": "4.0.13",
     "eslint": "7.22.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-prettier": "8.1.0",
